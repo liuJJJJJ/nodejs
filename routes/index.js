@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
     db.query(function(db){
-        db.collection("student").insertMany([req.body], function(err, result) {
+        db.collection("goods").insertMany([req.body], function(err, result) {
             // console.log(result)
             res.send("ok");
         })
@@ -18,8 +18,8 @@ router.post('/login', function(req, res, next) {
 /*login */
 router.post('/dl', function(req, res, next) {
     db.query(function(db){                             
-        db.collection('student').find({"username":req.body.username}).toArray(function(err,docs){   
-            if(docs.length>=0){
+        db.collection('goods').find({"username":req.body.username}).toArray(function(err,docs){   
+            if(docs.length>0){
                 res.send("ok");
             }else{
                 res.send("no");
@@ -30,7 +30,7 @@ router.post('/dl', function(req, res, next) {
 /*register*/
 router.post('/dlmm', function(req, res, next) {
     db.query(function(db){
-        db.collection("student").find({"username":req.body.username}).toArray(function(err, docs){
+        db.collection("goods").find({"username":req.body.username}).toArray(function(err, docs){
             // console.log(docs[0].password,req.body.username)
             if(docs[0].password==req.body.password){
                 res.send("ok");
@@ -98,7 +98,6 @@ router.post('/delete', function(req, res, next) {
 // 更新路由
 router.post('/update', function(req, res, next) {
     console.log(req.body);
-
         db.query(function(db){
             db.collection("biao").updateOne({
                     "_id": mongoose.Types.ObjectId(req.body._id)
@@ -116,9 +115,7 @@ router.post('/update', function(req, res, next) {
                       return;
                     }else{
                     res.send('修改成功');
-
                     }
-
             });
             
         })

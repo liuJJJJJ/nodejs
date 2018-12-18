@@ -1,7 +1,7 @@
 function find() {
     return new Promise(function(resolve, reject) {
         $("#btn_so").click(function(){
-            $("#tbody").empty();
+            // $("#tbody").empty();
             $.ajax({
                 type:"post",
                 async:true,
