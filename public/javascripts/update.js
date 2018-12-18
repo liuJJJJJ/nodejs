@@ -15,12 +15,11 @@ function xieruTable(data){
         return `
             <tr id="${item._id}">
                 <td>${index+1}</td>
-                <td>${item.username}</td>
-                <td>${item.password}</td>
-                <td>${item.age}</td>
-                <td>${item.sex}</td>
-                <td>${item.tel}</td>
-                <td>${item.txt}</td>
+                <td>${item.name}</td>
+                <td>${item.color}</td>
+                <td>${item.price}</td>
+                <td>${item.memory}</td>
+                <td><img src="${item.imgurl}"/ style="width:32px;height:32px;"></td>
                 <td ><button class="delete">编辑</button></td>
             </tr>
         `
@@ -39,12 +38,11 @@ function xieruTable(data){
                         url: 'http://localhost:3000/login/update',
                         type: 'post',
                         data:{_id:this.id,
-                            username:$("#username").val(),
-                            password:$("#password").val(),
-                            age:$("#age").val(),
-                            sex:$("#sex").val(),
-                            tel:$("#tel").val(),
-                            txt:$("#txt").val(),
+                            name:$("#name").val(),
+                            color:$("#color").val(),
+                            price:$("#price").val(),
+                            memory:$("#memory").val(),
+                            imgurl:$("#imgurl").val()
                         },
                         async:true,
 

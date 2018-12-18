@@ -42,9 +42,9 @@ $('#password').blur(function(){
         $('#passyz').html("密码不能为空...")
         return;
     }
-    else if(!uPattern.test(username)){
+    else if(!uPattern.test(password)){
         $('#passyz').css({"color":"red","display":"block"});
-        $('#passyz').html("用户名不正确...")
+        $('#passyz').html("密码不正确...")
         return;
     }
     else{

@@ -3,18 +3,17 @@ $("#btn").click(function(){
     $.ajax({
         type:"post",
         data:{
-            username:$("#username").val(),
-            password:$("#password").val(),
-            age:$("#age").val(),
-            sex:$("#sex").val(),
-            tel:$("#tel").val(),
-            txt:$("#txt").val()
+            name:$("#name").val(),
+            color:$("#colo").val(),
+            price:$("#price").val(),
+            memory:$("#memory").val(),
+            imgurl:$("#imgurl").val(),
         },
         url:"http://localhost:3000/login/add",
         async:true,
         success:function(data){
             if(data=="no"){
-                alert("该用户已存在")
+                alert("该商品已存在")
             }else{
                 alert("添加成功")
             window.location.href="http://localhost:3000/html/home.html"

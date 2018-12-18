@@ -1,13 +1,13 @@
-
 function find() {
     return new Promise(function(resolve, reject) {
         $("#btn_so").click(function(){
+            $("#tbody").empty();
             $.ajax({
                 type:"post",
                 async:true,
                 url:"http://localhost:3000/login/find",
                 data:{
-                    username:$("#input_so").val()
+                    name:$("#input_so").val()
                 },
                 success:function(data){
                     resolve(data);
@@ -17,16 +17,16 @@ function find() {
     })
 }
 function xieruTable(data){
+    console.log(data)
     var html = data.product.map(function(item,index){
         return `
             <tr>
                 <td>${index+1}</td>
-                <td>${item.username}</td>
-                <td>${item.password}</td>
-                <td>${item.age}</td>
-                <td>${item.sex}</td>
-                <td>${item.tel}</td>
-                <td>${item.txt}</td>
+                <td>${item.name}</td>
+                <td>${item.color}</td>
+                <td>${item.price}</td>
+                <td>${item.memory}</td>
+                <td><img src="${item.imgurl}"/ style="width:32px;height:32px;"></td>
             </tr>
         `
     }).join("")

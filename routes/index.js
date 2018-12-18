@@ -19,7 +19,7 @@ router.post('/login', function(req, res, next) {
 router.post('/dl', function(req, res, next) {
     db.query(function(db){                             
         db.collection('student').find({"username":req.body.username}).toArray(function(err,docs){   
-            if(docs.length>0){
+            if(docs.length>=0){
                 res.send("ok");
             }else{
                 res.send("no");
@@ -28,23 +28,23 @@ router.post('/dl', function(req, res, next) {
     });
 });
 /*register*/
-// router.post('/dlmm', function(req, res, next) {
-//     db.query(function(db){
-//         db.collection("student").find({"username":req.body.username}).toArray(function(err, docs){
-//             // console.log(docs[0].password,req.body.username)
-//             if(docs[0].password==req.body.password){
-//                 res.send("ok");
-//             }else{
-//                 res.send("no");
-//             }
-//         })
-//     })
-// });
+router.post('/dlmm', function(req, res, next) {
+    db.query(function(db){
+        db.collection("student").find({"username":req.body.username}).toArray(function(err, docs){
+            // console.log(docs[0].password,req.body.username)
+            if(docs[0].password==req.body.password){
+                res.send("ok");
+            }else{
+                res.send("no");
+            }
+        })
+    })
+});
 
 // 增加路由
 router.post('/add', function(req, res, next) {
     db.query(function(db){
-        db.collection("biao").find({"username":req.body.username}).toArray(function(err, docs) {
+        db.collection("biao").find({"name":req.body.name}).toArray(function(err, docs) {
             if(docs.length>0){
                 res.send("no");
             }else{
@@ -73,9 +73,9 @@ router.get('/home', function(req, res, next) {
 });
 // 查询路由
 router.post('/find', function(req, res, next) {
-    console.log(req.body.username);
+    console.log(req.body.name);
         db.query(function(db){
-            db.collection("biao").find({"username":req.body.username}).toArray(function(err, docs) {
+            db.collection("biao").find({"name":req.body.name}).toArray(function(err, docs) {
                 console.log(docs);
                 res.json({
                 product: docs
@@ -104,12 +104,11 @@ router.post('/update', function(req, res, next) {
                     "_id": mongoose.Types.ObjectId(req.body._id)
                   }, {
                     $set: {
-                        username:req.body.username,
-                        password:req.body.password,
-                        age:req.body.age,
-                        sex:req.body.sex,
-                        tel:req.body.tel,
-                        txt:req.body.txt,
+                        name:req.body.name,
+                        color:req.body.color,
+                        price:req.body.price,
+                        memory:req.body.memory,
+                        imgurl:req.body.imgurl
                     }
                   }, function(err, result) {
                     if (err) {
