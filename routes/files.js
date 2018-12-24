@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
-router.post('/uploads', upload.single('avatar'), function (req, res, next) {
+router.post('/uploads', upload.single('test'), function (req, res, next) {
     console.log(res);
     next();
 }, function (req, res, next) {

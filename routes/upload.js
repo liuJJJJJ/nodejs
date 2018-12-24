@@ -7,24 +7,24 @@ const express=require('express');
 const multer=require('multer')//解析图片的插件
 const fs=  require('fs')
 const path=require('path')
-const Router=express.Router();
+const router=express.Router();
 
 var upload = multer({ dest: 'uploads/' })//文件在服务器保存的临时路径
 //数据模型引入
-Router.post('/img',upload.single('test'),(req,res)=>{//保存图片的formdata 对象的key值
+router.post('/uploads',upload.single('test'),(req,res)=>{//保存图片的formdata 对象的key值
     console.log(req.file)
     fs.readFile(req.file.path,(err,data)=>{
-        if (err) { return res.send('上传失败')}
+        if (err) { return res.send('no')}
         //为了保障图片不被覆盖 采用 时间戳+随机方式生成文件名
         let name=new Date().getTime()+parseInt(Math.random(0,1)*10000)+path.extname(req.file.originalname);
         console.log(name)
-        fs.writeFile(path.join(__dirname,'../../public/img/'+name), data, (err)=>{
+        fs.writeFile(path.join(__dirname,'../public/images/'+name), data, (err)=>{
             //保存数据库的应该是  相对的图片路径
             if (err) {console.log(err)}
-            res.send({err:0,msg:'上传ok',data:'/img/'+name})
+            res.send({err:0,msg:'上传ok',data:'/images/'+name})
         });
 
     });
 
 })
-module.exports=Router;
+module.exports=router;
