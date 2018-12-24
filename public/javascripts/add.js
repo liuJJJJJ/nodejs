@@ -1,4 +1,3 @@
-
 $("#btn").click(function(){
     $.ajax({
         type:"post",
@@ -6,15 +5,30 @@ $("#btn").click(function(){
             name:$("#name").val(),
             color:$("#colo").val(),
             price:$("#price").val(),
-            memory:$("#memory").val(),
-            imgurl:$("#imgurl").val(),
+            memory:$("#memory").val()
         },
         url:"http://localhost:3000/login/add",
         async:true,
         success:function(data){
             if(data=="no"){
                 alert("该商品已存在")
-            }else{
+            }else{6
+                alert("添加成功")
+            window.location.href="http://localhost:3000/html/home.html"
+            }
+        }
+    });
+    $.ajax({
+        type:"post",
+        data:{
+            imgurl:$("#imgurl").val()
+        },
+        url:"http://localhost:3000/login/img",
+        async:true,
+        success:function(data){
+            if(data=="no"){
+                alert("该图片已存在")
+            }else{6
                 alert("添加成功")
             window.location.href="http://localhost:3000/html/home.html"
             }
